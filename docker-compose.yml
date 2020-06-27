@@ -11,7 +11,7 @@ services:
       - GOPATH=/app/.go
 
   serverless:
-    image: "flemay/serverless"
+    image: flemay/serverless
     volumes:
       - .:/app:cached
     working_dir: /app
