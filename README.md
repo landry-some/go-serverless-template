@@ -1,6 +1,8 @@
 # go-serverless-template
 
-Since this project tries to follow the [3 Musketeers](https://3musketeers.io) methodology, the following are heavily used:
+Template for Golang+Serverless projects.
+
+Since this tries to follow the [3 Musketeers](https://3musketeers.io) methodology, the following are heavily used:
 - Docker
 - Docker Compose
 - Make
