@@ -44,7 +44,7 @@ $ make deploy
 $ make fmt
 ```
 
-#### generate test mocks for all interfaces in project
+#### generate test mocks (to be used with [stretchr/testify](https://github.com/stretchr/testify)) for all interfaces in project
 ```bash
 $ make genMocks
 ```
