@@ -4,11 +4,11 @@ services:
   golang:
     image: golang:1.14-stretch
     volumes:
-      - .:/app:cached
-    working_dir: /app
+      - .:/code:cached
+    working_dir: /code
     env_file: .env
     environment:
-      - GOPATH=/app/.go
+      - GOPATH=/code/.go
 
   serverless:
     image: flemay/serverless
@@ -20,5 +20,5 @@ services:
   mockery:
     image: vektra/mockery
     volumes:
-      - .:/app:cached
-    working_dir: /app
+      - .:/code:cached
+    working_dir: /code
