@@ -20,5 +20,5 @@ services:
   mockery:
     image: vektra/mockery
     volumes:
-      - .:/code:cached
-    working_dir: /code
+      - .:/app:cached
+    working_dir: /app
