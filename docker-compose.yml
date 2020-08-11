@@ -2,7 +2,7 @@ version: "3"
 
 services:
   golang:
-    image: golang:1.14-stretch
+    image: golang:1.14
     volumes:
       - .:/code:cached
     working_dir: /code
