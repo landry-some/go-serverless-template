@@ -37,4 +37,4 @@ fmt: .env
 
 .PHONY: genMocks
 genMocks: .env
-	docker-compose run --rm mockery --all --keeptree
+	docker-compose run --rm mockery --all --inpackage --keeptree
