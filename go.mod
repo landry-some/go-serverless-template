@@ -1,5 +1,5 @@
 module github.com/gkatanacio/go-serverless-template
 
-go 1.14
+go 1.16
 
-require github.com/aws/aws-lambda-go v1.17.0
+require github.com/aws/aws-lambda-go v1.25.0
