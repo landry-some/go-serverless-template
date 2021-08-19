@@ -2,8 +2,8 @@ service: go-serverless-template
 
 package:
   individually: true
-  exclude:
-    - ./**
+  patterns:
+    - '!./**'
 
 provider:
   name: aws
@@ -17,7 +17,7 @@ functions:
   hello:
     handler: bin/hello
     package:
-      include:
+      patterns:
         - ./bin/hello
     timeout: 30
     memorySize: 128
