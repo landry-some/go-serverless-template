@@ -57,3 +57,5 @@ $ make fmt
 ```bash
 $ make genMocks
 ```
+
+- can be configured in `.mockery.yaml`
