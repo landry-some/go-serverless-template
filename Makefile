@@ -9,15 +9,15 @@ endif
 
 .PHONY: deps
 deps: .env
-	docker-compose run --rm go-local go mod tidy
+	docker-compose run --rm go-custom go mod tidy
 
 .PHONY: test
 test: .env
-	docker-compose run --rm go-local go test -v ./...
+	docker-compose run --rm go-custom go test -v ./...
 
 .PHONY: build
 build: .env
-	docker-compose run --rm go-local make _build
+	docker-compose run --rm go-custom make _build
 
 .PHONY: _build
 _build:
@@ -34,7 +34,7 @@ deploy: .env bin
 
 .PHONY: fmt
 fmt: .env
-	docker-compose run --rm go-local go fmt ./...
+	docker-compose run --rm go-custom go fmt ./...
 
 .PHONY: genMocks
 genMocks: .env

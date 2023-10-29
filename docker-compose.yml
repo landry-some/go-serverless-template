@@ -1,11 +1,11 @@
 version: "3"
 
 services:
-  go-local:
+  go-custom:
     build:
       context: .
       dockerfile: Dockerfile.golang
-    image: go-local
+    image: go-custom
     volumes:
       - .:/code:cached
     working_dir: /code
