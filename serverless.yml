@@ -2,12 +2,11 @@ service: go-serverless-template
 
 package:
   individually: true
-  patterns:
-    - '!./**'
 
 provider:
   name: aws
-  runtime: go1.x
+  runtime: provided.al2
+  architecture: arm64
   deploymentBucket:
     name: ${env:AWS_DEPLOYMENT_BUCKET}
   stage: ${env:STAGE}
@@ -15,14 +14,13 @@ provider:
 
 functions:
   hello:
-    handler: bin/hello
     package:
-      patterns:
-        - ./bin/hello
+      artifact: bin/hello.zip
+    handler: bootstrap
     timeout: 30
     memorySize: 128
     events:
       - schedule:
           rate: ${env:RUN_FREQUENCY}
     environment:
-      HELLO_WHO: ${env:HELLO_WHO}
+      GREET_WHO: ${env:GREET_WHO}

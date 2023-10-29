@@ -7,10 +7,19 @@ import (
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
+
+	"github.com/gkatanacio/go-serverless-template/pkg/greeting"
 )
 
+var greetingService greeting.Servicer
+
+func init() {
+	greetingService = greeting.NewService()
+}
+
 func handler(ctx context.Context, event events.CloudWatchEvent) error {
-	log.Printf("hello %s!", os.Getenv("HELLO_WHO"))
+	msg := greetingService.HelloMessage(os.Getenv("GREET_WHO"))
+	log.Print(msg)
 	return nil
 }
 

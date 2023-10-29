@@ -9,22 +9,23 @@ endif
 
 .PHONY: deps
 deps: .env
-	docker-compose run --rm golang go mod tidy
+	docker-compose run --rm go-local go mod tidy
 
 .PHONY: test
 test: .env
-	docker-compose run --rm golang go test -v ./...
+	docker-compose run --rm go-local go test -v ./...
 
 .PHONY: build
 build: .env
-	docker-compose run --rm golang make _build
+	docker-compose run --rm go-local make _build
 
 .PHONY: _build
 _build:
 	rm -rf bin
 	@for dir in $(wildcard functions/*/) ; do \
 		fxn=$$(basename $$dir) ; \
-		GOOS=linux go build -ldflags="-s -w" -o bin/$$fxn functions/$$fxn/*.go ; \
+		GOOS=linux GOARCH=arm64 go build -ldflags="-s -w" -o bin/$$fxn/bootstrap functions/$$fxn/*.go ; \
+		zip -j bin/$$fxn.zip bin/$$fxn/bootstrap ; \
 	done
 
 .PHONY: deploy
@@ -33,8 +34,8 @@ deploy: .env bin
 
 .PHONY: fmt
 fmt: .env
-	docker-compose run --rm golang go fmt ./...
+	docker-compose run --rm go-local go fmt ./...
 
 .PHONY: genMocks
 genMocks: .env
-	docker-compose run --rm mockery --all --inpackage --keeptree
+	docker-compose run --rm mockery
