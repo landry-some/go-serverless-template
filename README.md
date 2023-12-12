@@ -38,6 +38,8 @@ $ make test
 $ make build
 ```
 
+- this generates `bin` directory to be used in deployment
+
 #### deploy serverless application
 
 ```bash
