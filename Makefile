@@ -36,6 +36,6 @@ deploy: .env bin
 fmt: .env
 	docker compose run --rm go-custom go fmt ./...
 
-.PHONY: genMocks
-genMocks: .env
+.PHONY: mocks
+mocks: .env
 	docker compose run --rm mockery

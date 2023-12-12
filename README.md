@@ -57,7 +57,7 @@ $ make fmt
 #### generate test mocks (to be used with [stretchr/testify](https://github.com/stretchr/testify)) for all interfaces in project
 
 ```bash
-$ make genMocks
+$ make mocks
 ```
 
 - can be configured in `.mockery.yaml`
