@@ -18,12 +18,12 @@ func init() {
 	greetingService = greeting.NewService()
 }
 
-func handler(ctx context.Context, request events.APIGatewayV2HTTPRequest) (events.APIGatewayV2HTTPResponse, error) {
+func handler(ctx context.Context, request *events.APIGatewayV2HTTPRequest) (*events.APIGatewayV2HTTPResponse, error) {
 	log.Printf("%+v", request)
 
 	msg := greetingService.HelloMessage(os.Getenv("GREET_WHO"))
 
-	return events.APIGatewayV2HTTPResponse{
+	return &events.APIGatewayV2HTTPResponse{
 		StatusCode: 200,
 		Headers: map[string]string{
 			"Content-Type": "application/json",
