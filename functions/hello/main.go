@@ -18,7 +18,7 @@ func init() {
 	greetingService = greeting.NewService()
 }
 
-func handler(ctx context.Context, request *events.APIGatewayV2HTTPRequest) (*events.APIGatewayV2HTTPResponse, error) {
+func handle(ctx context.Context, request *events.APIGatewayV2HTTPRequest) (*events.APIGatewayV2HTTPResponse, error) {
 	log.Printf("%+v", request)
 
 	msg := greetingService.HelloMessage(os.Getenv("GREET_WHO"))
@@ -33,5 +33,5 @@ func handler(ctx context.Context, request *events.APIGatewayV2HTTPRequest) (*eve
 }
 
 func main() {
-	lambda.Start(handler)
+	lambda.Start(handle)
 }
