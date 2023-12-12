@@ -13,16 +13,19 @@ provider:
     name: ${env:AWS_DEPLOYMENT_BUCKET}
   stage: ${env:STAGE}
   region: ${env:AWS_REGION}
+  httpApi:
+    cors: true
 
 functions:
   hello:
     package:
       artifact: bin/hello.zip
     handler: bootstrap
-    timeout: 30
+    timeout: 20
     memorySize: 128
     events:
-      - schedule:
-          rate: ${env:RUN_FREQUENCY}
+      - httpApi:
+          method: get
+          path: /hello
     environment:
       GREET_WHO: ${env:GREET_WHO}

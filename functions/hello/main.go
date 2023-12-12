@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"os"
 
@@ -17,10 +18,18 @@ func init() {
 	greetingService = greeting.NewService()
 }
 
-func handler(ctx context.Context, event events.CloudWatchEvent) error {
+func handler(ctx context.Context, request events.APIGatewayV2HTTPRequest) (events.APIGatewayV2HTTPResponse, error) {
+	log.Printf("%+v", request)
+
 	msg := greetingService.HelloMessage(os.Getenv("GREET_WHO"))
-	log.Print(msg)
-	return nil
+
+	return events.APIGatewayV2HTTPResponse{
+		StatusCode: 200,
+		Headers: map[string]string{
+			"Content-Type": "application/json",
+		},
+		Body: fmt.Sprintf(`{"message":"%s"}`, msg),
+	}, nil
 }
 
 func main() {
