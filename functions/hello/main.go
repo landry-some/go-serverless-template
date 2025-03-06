@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
-	"log"
+	"log/slog"
 	"os"
 
 	"github.com/aws/aws-lambda-go/events"
@@ -12,16 +12,16 @@ import (
 	"github.com/gkatanacio/go-serverless-template/pkg/greeting"
 )
 
-var greetingService greeting.Servicer
+var greetingService greeting.Service
 
 func init() {
 	greetingService = greeting.NewService()
 }
 
 func handle(ctx context.Context, request *events.APIGatewayV2HTTPRequest) (*events.APIGatewayV2HTTPResponse, error) {
-	log.Printf("%+v", request)
+	slog.InfoContext(ctx, fmt.Sprintf("Received request: %+v", request))
 
-	msg := greetingService.HelloMessage(os.Getenv("GREET_WHO"))
+	msg := greetingService.HelloMessage(ctx, os.Getenv("GREET_WHO"))
 
 	return &events.APIGatewayV2HTTPResponse{
 		StatusCode: 200,

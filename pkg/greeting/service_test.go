@@ -1,6 +1,7 @@
 package greeting_test
 
 import (
+	"context"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -14,7 +15,7 @@ func Test_Service_HelloMessage(t *testing.T) {
 	name := "John Doe"
 
 	// when
-	msg := service.HelloMessage(name)
+	msg := service.HelloMessage(context.Background(), name)
 
 	// then
 	assert.Equal(t, "Hello there, John Doe!", msg)

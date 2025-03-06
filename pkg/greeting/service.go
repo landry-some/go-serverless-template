@@ -1,19 +1,20 @@
 package greeting
 
 import (
+	"context"
 	"fmt"
 )
 
-type Servicer interface {
-	HelloMessage(name string) string
+type Service interface {
+	HelloMessage(ctx context.Context, name string) string
 }
 
-type Service struct{}
+type service struct{}
 
-func NewService() *Service {
-	return &Service{}
+func NewService() *service {
+	return &service{}
 }
 
-func (s *Service) HelloMessage(name string) string {
+func (s *service) HelloMessage(ctx context.Context, name string) string {
 	return fmt.Sprintf("Hello there, %s!", name)
 }
