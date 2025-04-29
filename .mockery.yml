@@ -1,0 +1,9 @@
+# https://vektra.github.io/mockery/latest/configuration/
+dir: mocks/{{.SrcPackageName}}
+filename: mocks.go
+recursive: true
+template: testify
+packages:
+  github.com/gkatanacio/go-serverless-template/pkg/greeting:
+    config:
+      all: true
